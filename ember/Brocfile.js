@@ -13,7 +13,7 @@ var app = new EmberApp({
     options: {}
   },
 
-  getEnvJSON: require('./config/environment')
+getEnvJSON: require('./config/environment')
 });
 
 // Use `app.import` to add additional libraries to the generated
@@ -47,6 +47,10 @@ app.import('vendor/ic-ajax/dist/named-amd/main.js', {
     'request',
   ]
 });
-
+if (app.env == 'development') {
+  app.import('vendor/route-recognizer/dist/route-recognizer.js');
+  app.import('vendor/FakeXMLHttpRequest/fake_xml_http_request.js');
+  app.import('vendor/pretender/pretender.js');
+}
 
 module.exports = app.toTree();
